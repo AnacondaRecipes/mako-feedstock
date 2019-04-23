@@ -1,28 +1,24 @@
-{% set name = "Mako" %}
-{% set version = "1.0.7" %}
-{% set checksum = "4e02fde57bd4abb5ec400181e4c314f56ac3e49ba4fb8b0d50bba18cb27d25ae" %}
+{% set version = "1.0.9" %}
 
 package:
-  name: {{ name|lower }}
+  name: mako
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ checksum }}
+  url: https://pypi.io/packages/source/M/Mako/Mako-{{ version }}.tar.gz
+  sha256: 0728c404877cd4ca72c409c0ea372dc5f3b53fa1ad2bb434e1d216c0444ff1fd
 
 build:
+  number: 0
   preserve_egg_dir: True
   entry_points:
     - mako-render=mako.cmd:cmdline
-  script: python setup.py install
-  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   host:
     - python
-    - setuptools
-    - markupsafe >=0.9.2
+    - pip
   run:
     - python
     - markupsafe >=0.9.2
