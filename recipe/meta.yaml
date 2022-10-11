@@ -1,6 +1,6 @@
 {% set name = "Mako" %}
-{% set version = "1.1.4" %}
-{% set checksum = "17831f0b7087c313c0ffae2bcbbd3c1d5ba9eeac9c38f2eb7b50e8c99fe9d5ab" %}
+{% set version = "1.2.3" %}
+{% set checksum = "7fde96466fcfeedb0eed94f187f20b23d85e4cb41444be0e542e2c8c65c396cd" %}
 
 package:
   name: {{ name|lower }}
@@ -12,37 +12,43 @@ source:
   sha256: {{ checksum }}
 
 build:
-  noarch: python
+  number: 0
+  skip: True  # [py<37]
   preserve_egg_dir: True
   entry_points:
     - mako-render=mako.cmd:cmdline
-  script: python -m pip install --no-deps --ignore-installed .
-  number: 0
+  script: python -m pip install --no-deps --ignore-installed . -vv
 
 requirements:
   host:
     - python
     - pip
-    - markupsafe >=0.9.2
-    
+    - setuptools >=47
+    - wheel    
   run:
     - python
+    - importlib-metadata  # [py<38]
     - markupsafe >=0.9.2
 
 test:
   imports:
     - mako
     - mako.ext
+  requires:
+    - pip
   commands:
+    - pip check
     - mako-render --help
 
 about:
-  home: http://www.makotemplates.org/
+  home: https://www.makotemplates.org/
   license_file: LICENSE
   license: MIT
+  license_family: MIT
+  license_url: https://github.com/sqlalchemy/mako/blob/main/LICENSE
   summary: A super-fast templating language that borrows the best ideas from the existing templating languages.
-  doc_url: http://docs.makotemplates.org/en/latest/
-  dev_url: https://bitbucket.org/zzzeek/mako/src
+  doc_url: https://docs.makotemplates.org/en/latest/
+  dev_url: https://github.com/sqlalchemy/mako
 
 extra:
   recipe-maintainers:
