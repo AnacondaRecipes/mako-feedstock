@@ -34,6 +34,7 @@ test:
   requires:
     - pip
   commands:
+    # All tests are deselected by authors of package, so we do not run them
     - pip check
     - mako-render --help
 
