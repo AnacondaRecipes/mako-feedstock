@@ -28,15 +28,20 @@ requirements:
     - markupsafe >=0.9.2
 
 test:
+  source_files:
+    - test
+    - pyproject.toml
+    - setup.cfg
   imports:
     - mako
     - mako.ext
   requires:
+    - pytest
     - pip
   commands:
-    # All tests are deselected by authors of package, so we do not run them
     - pip check
     - mako-render --help
+    - pytest -v test
 
 about:
   home: https://www.makotemplates.org
