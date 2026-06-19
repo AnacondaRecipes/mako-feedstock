@@ -48,7 +48,6 @@ about:
   license_file: LICENSE
   license: MIT
   license_family: MIT
-  license_url: https://github.com/sqlalchemy/mako/blob/main/LICENSE
   summary: A super-fast templating language that borrows the best ideas from the existing templating languages.
   description: |
     Mako is a template library written in Python. It provides a familiar,
