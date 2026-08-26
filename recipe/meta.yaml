@@ -40,6 +40,8 @@ test:
   requires:
     - pytest
     - pip
+    - babel
+    - pygments
   commands:
     - pip check
     - mako-render --help
